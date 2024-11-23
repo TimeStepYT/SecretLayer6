@@ -37,7 +37,7 @@ public:
 #include <Geode/modify/SecretGame01Layer.hpp>
 
 class $modify(CatCubes, SecretGame01Layer) {
-	gd::string getFrameForDifficulty(int);
+	gd::string getFrameForDifficulty();
 };
 #endif
 

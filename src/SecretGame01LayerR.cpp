@@ -459,7 +459,7 @@ CCTintTo* SecretGame01LayerR::betterTintTo(float duration, _ccColor3B color) {
 
 gd::string SecretGame01LayerR::getFrameForDifficulty(int difficulty) {
 #else
-gd::string SecretGame01Layer::getFrameForDifficulty(int difficulty) {
+gd::string CatCubes::getFrameForDifficulty(int difficulty) {
 #endif
 	gd::string frame = "";
 	switch (difficulty) {
@@ -484,7 +484,6 @@ gd::string SecretGame01Layer::getFrameForDifficulty(int difficulty) {
 			break;
 	}
 	if (!Mod::get()->getSettingValue<bool>("fixDifficultyFrame")) frame = "player_01_001.png";
-	return frame;
 }
 
 void FunnyLayer::onText(CCObject * sender) {
