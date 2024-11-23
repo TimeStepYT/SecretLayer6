@@ -1,0 +1,23 @@
+{
+	"geode": "4.0.1",
+	"gd": {
+		"win": "2.2074",
+		"android": "2.2074",
+		"mac": "2.2074",
+		"ios": "2.2074"
+	},
+	"id": "timestepyt.secretlayer6",
+	"name": "SecretLayer6",
+	"version": "v1.0.0",
+	"developer": "TimeStepYT",
+	"description": "Access to the unused minigame",
+
+	"settings": {
+		"fixDifficultyFrame": {
+			"name": "Fix icons for difficulty",
+			"description": "The original function <cr>just doesn't work</c>, so this setting <cg>replaces it with a working one</c>!",
+			"type": "bool",
+			"default": false
+		}
+	}
+}
