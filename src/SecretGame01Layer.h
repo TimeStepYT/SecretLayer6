@@ -33,10 +33,16 @@ public:
 	float m_timePassed;
 	float m_maxTime;
 };
+#else
+#include <Geode/modify/SecretGame01Layer.hpp>
+
+class $modify(CatCubes, SecretGame01Layer) {
+	gd::string getFrameForDifficulty(int);
+};
 #endif
 
 class FunnyLayer : public FLAlertLayer {
-	public:
+public:
 	static FunnyLayer* create();
 	bool init();
 	void keyBackClicked();
