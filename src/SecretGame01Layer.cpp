@@ -459,10 +459,6 @@ CCTintTo* SecretGame01LayerR::betterTintTo(float duration, _ccColor3B color) {
 
 gd::string SecretGame01LayerR::getFrameForDifficulty(int difficulty) {
 #else
-#include <Geode/modify/SecretGame01Layer.hpp>
-class $modify(CatCubes, SecretGame01Layer) {
-	gd::string getFrameForDifficulty(int);
-};
 gd::string SecretGame01Layer::getFrameForDifficulty(int difficulty) {
 #endif
 	gd::string frame = "";
