@@ -68,6 +68,7 @@ void FunnyLayer::onClose(CCObject* sender) {
 }
 
 #ifdef GEODE_IS_WINDOWS
+
 SecretGame01LayerR* SecretGame01LayerR::create() {
 	auto res = new SecretGame01LayerR();
 	if (res && res->init()) {
@@ -484,9 +485,11 @@ gd::string CatCubes::getFrameForDifficulty(int difficulty) {
 			break;
 	}
 	if (!Mod::get()->getSettingValue<bool>("fixDifficultyFrame")) frame = "player_01_001.png";
+	return frame;
 }
 
-void FunnyLayer::onText(CCObject * sender) {
+
+void FunnyLayer::onText(CCObject* sender) {
 #ifdef GEODE_IS_WINDOWS
 	CCDirector::sharedDirector()->pushScene(SecretLayer6R::scene());
 #else
