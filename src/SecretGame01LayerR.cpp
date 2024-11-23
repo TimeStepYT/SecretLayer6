@@ -139,13 +139,13 @@ unsigned int SecretGame01LayerR::getCountForDifficulty(int difficulty) {
 
 	unsigned int countsForDifficulty[]{ 3, 4, 5, 3, 4, 5, 6, 3, 4, 5, 6, 7 };
 
-	if (difficulty < 12) count = countsForDifficulty[difficultyLess];
+	if (difficultyLess < 12) count = countsForDifficulty[difficultyLess];
 
 	return count;
 }
 
 void SecretGame01LayerR::gameStep01() {
-	unsigned int countForDifficulty = this->getCountForDifficulty(this->m_difficulty);
+	int countForDifficulty = this->getCountForDifficulty(this->m_difficulty);
 	auto wrongIcons = CCArray::create();
 	wrongIcons->addObjectsFromArray(this->m_icons);
 	this->m_correctIcons->removeAllObjects();
@@ -342,6 +342,7 @@ void SecretGame01LayerR::resetGame() {
 			sprite->addChild(sprite2);
 			sprite2->setPosition(sprite->getContentSize() / 2.f);
 			sprite2->setColor({ 60, 60, 60 });
+			sprite2->setZOrder(-1);
 
 			auto selectButton = CCMenuItemSpriteExtra::create(sprite, nullptr, this, menu_selector(SecretGame01LayerR::onSelectButton));
 			selectButton->setSizeMult(1.2f);
@@ -459,9 +460,6 @@ CCTintTo* SecretGame01LayerR::betterTintTo(float duration, _ccColor3B color) {
 }
 
 gd::string SecretGame01LayerR::getFrameForDifficulty(int difficulty) {
-#else
-gd::string CatCubes::getFrameForDifficulty(int difficulty) {
-#endif
 	gd::string frame = "";
 	switch (difficulty) {
 		case 0:
@@ -487,7 +485,7 @@ gd::string CatCubes::getFrameForDifficulty(int difficulty) {
 	if (!Mod::get()->getSettingValue<bool>("fixDifficultyFrame")) frame = "player_01_001.png";
 	return frame;
 }
-
+#endif
 
 void FunnyLayer::onText(CCObject* sender) {
 #ifdef GEODE_IS_WINDOWS
