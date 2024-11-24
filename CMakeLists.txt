@@ -7,7 +7,7 @@ set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 project(scenetest VERSION 1.0.0)
 
 add_library(${PROJECT_NAME} SHARED
-    src/main.cpp
+    src/SecretLayer5.cpp
     src/SecretLayer6R.cpp
     src/SecretGame01LayerR.cpp
     # Add any extra C++ source files here

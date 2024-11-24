@@ -15,4 +15,9 @@ public:
 
 	SecretGame01LayerR* m_gameLayer;
 };
+#else
+#include <Geode/modify/SecretLayer6.hpp>
+class $modify(MySecretLayer6, SecretLayer6) {
+	void onBack(CCObject*);
+};
 #endif

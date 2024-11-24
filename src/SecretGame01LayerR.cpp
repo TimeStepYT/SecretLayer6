@@ -3,70 +3,6 @@
 
 using namespace geode::prelude;
 
-FunnyLayer* FunnyLayer::create() {
-	auto ret = new FunnyLayer();
-	if (ret && ret->init()) {
-		ret->autorelease();
-		return ret;
-	}
-	delete ret;
-	return nullptr;
-}
-
-bool FunnyLayer::init() {
-	if (!FLAlertLayer::init(70)) return false;
-	auto screenSize = CCDirector::sharedDirector()->getWinSize();
-	m_scene = CCDirector::sharedDirector()->getRunningScene();
-	this->setID("funny-layer");
-
-	m_bgSprite = CCScale9Sprite::create("GJ_square04.png");
-	m_bgSprite->setPositionX(screenSize.width / 2);
-	m_bgSprite->setPositionY(screenSize.height / 2);
-	m_bgSprite->setContentWidth(300);
-	m_bgSprite->setContentHeight(150);
-	m_bgSprite->setID("background");
-
-
-	auto player = SimplePlayer::create(102);
-	player->setColors({ 0, 0, 0 }, { 0, 200, 255 });
-	player->setGlowOutline({ 0, 125, 255 });
-	player->setPosition({ screenSize.width / 2, screenSize.height / 2 - 40 });
-
-	auto textSpr = CCLabelBMFont::create("Follow me on my OnlyFans!", "goldFont.fnt");
-	textSpr->setScale(0.8f);
-	auto text = CCMenuItemSpriteExtra::create(textSpr, this, menu_selector(FunnyLayer::onText));
-	text->setID("promo-text");
-
-	auto ofSprite = CCSprite::createWithSpriteFrameName("label_of_001.png");
-	ofSprite->setPositionX(m_bgSprite->getPositionX());
-	ofSprite->setPositionY(m_bgSprite->getPositionY() + m_bgSprite->getContentHeight() / 2);
-	ofSprite->setID("of-sprite");
-
-	m_mainMenu = CCMenu::create();
-	auto closeSprite = CCSprite::createWithSpriteFrameName("GJ_closeBtn_001.png");
-	auto closeBtn = CCMenuItemSpriteExtra::create(closeSprite, this, menu_selector(FunnyLayer::onClose));
-	closeBtn->setPositionX(-m_bgSprite->getContentWidth() / 2);
-	closeBtn->setPositionY(m_bgSprite->getContentHeight() / 2);
-
-	m_mainMenu->addChild(closeBtn);
-	m_mainMenu->addChild(text);
-	m_mainLayer->addChild(player, 1);
-	m_mainLayer->addChild(m_bgSprite);
-	m_mainLayer->addChild(ofSprite);
-	m_mainLayer->addChild(m_mainMenu);
-	m_mainLayer->setID("main-layer");
-	handleTouchPriority(this);
-	return true;
-}
-
-void FunnyLayer::keyBackClicked() {
-	onClose(nullptr);
-}
-
-void FunnyLayer::onClose(CCObject* sender) {
-	this->removeFromParentAndCleanup(true);
-}
-
 #ifdef GEODE_IS_WINDOWS
 
 SecretGame01LayerR* SecretGame01LayerR::create() {
@@ -125,7 +61,7 @@ int SecretGame01LayerR::getRowsForDifficulty(int difficulty) {
 }
 
 unsigned int SecretGame01LayerR::getTimeForDifficulty(int difficulty) {
-	unsigned int timesForDifficulty[] = { 3, 5, 6, 7, 5, 6, 8, 10, 5, 6,8, 10, 12,0,0,0 };
+	unsigned int timesForDifficulty[] = { 3, 5, 6, 7, 5, 6, 8, 10, 5, 6, 8, 10, 12, 0, 0, 0 };
 	unsigned int time = 10;
 
 	if (difficulty < 13) time = timesForDifficulty[difficulty];
@@ -273,7 +209,7 @@ void SecretGame01LayerR::scaleOutGame(bool won) {
 		else tintTo = betterTintTo(0.1f, innerColor);
 
 		delay = CCDelayTime::create(0.3f);
-		auto scaleTo = CCScaleTo::create(0.5f, 0.1f);
+		auto scaleTo = CCScaleTo::create(0.5f, 0.f);
 		auto easeInOut = CCEaseInOut::create(scaleTo, 2.f);
 		sequence = CCSequence::create(tintTo, delay, easeInOut, nullptr);
 		normalImage->runAction(sequence);
@@ -486,11 +422,3 @@ gd::string SecretGame01LayerR::getFrameForDifficulty(int difficulty) {
 	return frame;
 }
 #endif
-
-void FunnyLayer::onText(CCObject* sender) {
-#ifdef GEODE_IS_WINDOWS
-	CCDirector::sharedDirector()->pushScene(SecretLayer6R::scene());
-#else
-	CCDirector::sharedDirector()->replaceScene(SecretLayer6::scene());
-#endif
-}
