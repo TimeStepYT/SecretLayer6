@@ -34,15 +34,3 @@ public:
 	float m_maxTime;
 };
 #endif
-
-class FunnyLayer : public FLAlertLayer {
-public:
-	static FunnyLayer* create();
-	bool init();
-	void keyBackClicked();
-	void onClose(cocos2d::CCObject*);
-	void onText(cocos2d::CCObject*);
-
-	cocos2d::extension::CCScale9Sprite* m_bgSprite;
-	cocos2d::CCMenu* m_mainMenu;
-};

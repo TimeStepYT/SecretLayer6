@@ -1,10 +1,23 @@
-#ifdef GEODE_IS_WINDOWS
 #include "SecretLayer6R.h"
-
+#include <Geode/binding/SecretLayer5.hpp>
 using namespace geode::prelude;
 
+#ifndef GEODE_IS_WINDOWS
+void MySecretLayer6::onBack(CCObject* sender) {
+#else
+void SecretLayer6R::onBack(CCObject* sender) {
+#endif
+	auto director = CCDirector::sharedDirector();
+	auto gameManager = GameManager::get();
+
+	gameManager->fadeInMusic("secretLoop04.ogg");
+	director->popSceneWithTransition(0.5f, PopTransition::kPopTransitionFade);
+}
+
+#ifdef GEODE_IS_WINDOWS
 CCScene* SecretLayer6R::scene() {
 	CCScene* scene = CCScene::create();
+	scene->retain();
 	AppDelegate* appDelegate = AppDelegate::get();
 	appDelegate->m_runningScene = scene;
 	SecretLayer6R* secretLayer = SecretLayer6R::create();
@@ -20,18 +33,6 @@ SecretLayer6R* SecretLayer6R::create() {
 	}
 	delete res;
 	return nullptr;
-}
-
-void SecretLayer6R::onBack(CCObject* sender) {
-	auto backBtn = static_cast<CCMenuItemSpriteExtra*>(sender);
-	auto state = GameManager::sharedState();
-	auto director = CCDirector::sharedDirector();
-	auto scene = MenuLayer::scene(false);
-
-	backBtn->getNormalImage();
-	state->fadeInMenuMusic();
-	scene = CCTransitionFade::create(0.5f, scene);
-	director->replaceScene(scene);
 }
 
 void SecretLayer6R::startGame01() {
