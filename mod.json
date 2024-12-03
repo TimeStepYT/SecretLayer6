@@ -11,11 +11,13 @@
     "version": "v1.0.0",
     "developer": "TimeStepYT",
     "description": "Access to the unused minigame",
-
+    "tags": ["content", "offline"],
     "resources": {
         "sprites": ["resources/*.png"]
     },
-
+    "links": {
+        "source": "https://github.com/TimeStepYT/SecretLayer6"
+    },  
     "settings": {
         "fixDifficultyFrame": {
             "name": "Fix icons for difficulty",
