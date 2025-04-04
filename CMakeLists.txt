@@ -13,7 +13,7 @@ if ("${CMAKE_SYSTEM_NAME}" STREQUAL "iOS" OR IOS OR WIN32)
     add_compile_definitions(NEEDS_DECOMP)
 endif()
 
-project(scenetest VERSION 1.0.1)
+project(scenetest VERSION 1.0.2)
 
 add_library(${PROJECT_NAME} SHARED
     src/SecretLayer5.cpp
