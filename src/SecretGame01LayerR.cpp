@@ -17,6 +17,14 @@ SecretGame01LayerR* SecretGame01LayerR::create() {
 
 bool SecretGame01LayerR::init() {
 	if (!CCLayer::init()) return false;
+
+	if (Mod::get()->getSettingValue<bool>("fixDifficultyFrame")) {
+		// Thank you for you help, dank!
+		GameManager::get()->loadIcon(1, (int) IconType::Cube, -1);
+		GameManager::get()->loadIcon(4, (int) IconType::Cube, -1);
+		GameManager::get()->loadIcon(12, (int) IconType::Cube, -1);
+		GameManager::get()->loadIcon(73, (int) IconType::Cube, -1);
+	}
 	auto director = CCDirector::sharedDirector();
 	auto winSize = director->getWinSize();
 
@@ -396,32 +404,27 @@ CCTintTo* SecretGame01LayerR::betterTintTo(float duration, _ccColor3B color) {
 }
 
 std::string SecretGame01LayerR::getFrameForDifficulty(int difficulty) {
-	// I hope these fix the weird fallback texture thing
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("player_01.plist");
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("player_04.plist");
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("player_12.plist");
-	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("player_73.plist");
 	std::string frame = "";
 	switch (difficulty) {
 		case 0:
-		frame = "player_01_001.png";
-		break;
+			frame = "player_01_001.png";
+			break;
 		default:
-		frame = "player_04_001.png";
-		break;
+			frame = "player_04_001.png";
+			break;
 		case 4: [[fallthrough]];
 		case 5: [[fallthrough]];
 		case 6: [[fallthrough]];
 		case 7:
-		frame = "player_12_001.png";
-		break;
+			frame = "player_12_001.png";
+			break;
 		case 8: [[fallthrough]];
 		case 9: [[fallthrough]];
 		case 10: [[fallthrough]];
 		case 11: [[fallthrough]];
 		case 12:
-		frame = "player_73_001.png";
-		break;
+			frame = "player_73_001.png";
+			break;
 	}
 	if (!Mod::get()->getSettingValue<bool>("fixDifficultyFrame")) frame = "player_01_001.png";
 	return frame;

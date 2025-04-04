@@ -9,9 +9,9 @@ else()
     set(CMAKE_OSX_ARCHITECTURES "arm64;x86_64")
 endif()
 
-if ("${CMAKE_SYSTEM_NAME}" STREQUAL "iOS" OR IOS OR WIN32) 
+# if ("${CMAKE_SYSTEM_NAME}" STREQUAL "iOS" OR IOS OR WIN32) 
     add_compile_definitions(NEEDS_DECOMP)
-endif()
+# endif()
 
 project(scenetest VERSION 1.0.2)
 
