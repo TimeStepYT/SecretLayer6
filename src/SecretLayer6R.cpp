@@ -5,7 +5,7 @@ using namespace geode::prelude;
 #ifndef NEEDS_DECOMP
 void MySecretLayer6::onBack(CCObject* sender) {
 #else
-void SecretLayer6R::onBack(CCObject* sender) {
+void SecretLayer6R::onBack(CCObject * sender) {
 #endif
 	auto director = CCDirector::sharedDirector();
 	auto gameManager = GameManager::get();
@@ -77,7 +77,10 @@ bool SecretLayer6R::init() {
 	CCMenuItemSpriteExtra* backArrowNode = CCMenuItemSpriteExtra::create(backArrow, nullptr, this, menu_selector(SecretLayer6R::onBack));
 
 	backArrowNode->setSizeMult(1.5f);
-	auto menu = CCMenu::create(backArrowNode, 0);
+	
+	auto menu = CCMenu::create();
+	menu->addChild(backArrowNode);
+
 	this->addChild(menu);
 	director = CCDirector::sharedDirector();
 	float left = director->getScreenLeft();
