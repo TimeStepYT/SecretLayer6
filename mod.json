@@ -1,5 +1,5 @@
 {
-    "geode": "4.0.1",
+    "geode": "4.3.1",
     "gd": {
         "win": "2.2074",
         "android": "2.2074",
@@ -8,23 +8,31 @@
     },
     "id": "timestepyt.secretlayer6",
     "name": "SecretLayer6",
-    "version": "v1.0.1",
+    "version": "v1.0.2",
     "developer": "TimeStepYT",
     "description": "Access to the unused minigame",
-    "tags": ["content", "offline"],
+    "tags": [
+        "content",
+        "offline"
+    ],
     "resources": {
-        "sprites": ["resources/*.png"]
+        "sprites": [
+            "resources/*.png"
+        ]
     },
     "links": {
         "source": "https://github.com/TimeStepYT/SecretLayer6"
-    },  
+    },
     "settings": {
         "fixDifficultyFrame": {
             "name": "Fix icons for difficulty",
             "description": "The original function <cr>just doesn't work</c>, so this setting <cg>replaces it with a working one</c>!\n(Windows only because it reverted to a fallback texture on Android)",
             "type": "bool",
             "default": false,
-            "platforms": ["win"]
+            "platforms": [
+                "win",
+                "ios"
+            ]
         }
     }
 }

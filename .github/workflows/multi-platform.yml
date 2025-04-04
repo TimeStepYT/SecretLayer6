@@ -18,6 +18,10 @@ jobs:
         - name: macOS
           os: macos-latest
 
+        - name: iOS
+          os: macos-latest
+          target: iOS
+
         - name: Android32
           os: ubuntu-latest
           target: Android32
@@ -40,6 +44,8 @@ jobs:
           combine: true
           export-pdb: true
           target: ${{ matrix.config.target }}
+          sdk: nightly
+          cli: nightly
 
   package:
     name: Package builds

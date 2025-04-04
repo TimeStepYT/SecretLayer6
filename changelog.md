@@ -1,3 +1,6 @@
+# 1.0.2
+* iOS support!
+
 # 1.0.1
 * Added tags and GitHub repository link to the mod's page
 

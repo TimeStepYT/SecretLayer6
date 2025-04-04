@@ -2,7 +2,7 @@
 #include <Geode/Geode.hpp>
 #include "SecretGame01LayerR.h"
 
-#ifdef GEODE_IS_WINDOWS
+#ifdef NEEDS_DECOMP
 class SecretLayer6R : public cocos2d::CCLayer {
 public:
 	static cocos2d::CCScene* scene();
