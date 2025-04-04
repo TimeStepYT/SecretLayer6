@@ -54,7 +54,7 @@ class $modify(MySecretLayer5, SecretLayer5) {
 		this->m_textInput->onClickTrackNode(false);
 
 		CCArray* objects = CCArray::create();
-		objects->addObject(DialogObject::create("The Wraith", "<cj>Mastermind</c>, you say...<d050>\n<cy>That reminds me</c><d010>.<d015>.<d020>.", 53, 1.f, true, ccc3(255, 255, 255)));
+		objects->addObject(DialogObject::create("The Wraith", "<cj>\"Mastermind\"</c>, you say...<d050>\n<cy>That reminds me</c><d010>.<d015>.<d020>.", 53, 1.f, true, ccc3(255, 255, 255)));
 		objects->addObject(DialogObject::create("The Wraith", "I got <cy>this minigame</c> lying around...", 54, 1.f, true, ccc3(255, 255, 255)));
 		auto dialogLayer = DialogLayer::createWithObjects(objects, 4);
 		dialogLayer->setID("mastermind-dialog"_spr);
