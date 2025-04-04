@@ -18,8 +18,7 @@ void SecretLayer6R::onBack(CCObject* sender) {
 CCScene* SecretLayer6R::scene() {
 	CCScene* scene = CCScene::create();
 	scene->retain();
-	AppDelegate* appDelegate = AppDelegate::get();
-	appDelegate->m_runningScene = scene;
+	// AppDelegate::get()->m_runningScene = scene;
 	SecretLayer6R* secretLayer = SecretLayer6R::create();
 	scene->addChild(secretLayer);
 	return scene;
