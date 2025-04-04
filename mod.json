@@ -26,7 +26,7 @@
     "settings": {
         "fixDifficultyFrame": {
             "name": "Fix icons for difficulty",
-            "description": "The original function <cr>just doesn't work</c>, so this setting <cg>replaces it with a working one</c>!\n(Windows only because it reverted to a fallback texture on Android)",
+            "description": "The original function <cr>just doesn't work</c>, so this setting <cg>replaces it with a working one</c>!",
             "type": "bool",
             "default": false
         }
