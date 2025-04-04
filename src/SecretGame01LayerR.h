@@ -20,7 +20,7 @@ public:
 	int getRowsForDifficulty(int);
 	unsigned int getTimeForDifficulty(int);
 	unsigned int getCountForDifficulty(int);
-	gd::string getFrameForDifficulty(int);
+	std::string getFrameForDifficulty(int);
 	cocos2d::CCTintTo* betterTintTo(float, cocos2d::_ccColor3B);
 
 	unsigned int m_difficulty;
