@@ -1,7 +1,7 @@
 #pragma once
 #include <Geode/Geode.hpp>
 
-#ifdef GEODE_IS_WINDOWS
+#ifdef NEEDS_DECOMP
 class SecretGame01LayerR : public cocos2d::CCLayer {
 public:
 	static SecretGame01LayerR* create();

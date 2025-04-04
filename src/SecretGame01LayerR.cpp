@@ -3,7 +3,7 @@
 
 using namespace geode::prelude;
 
-#ifdef GEODE_IS_WINDOWS
+#ifdef NEEDS_DECOMP
 
 SecretGame01LayerR* SecretGame01LayerR::create() {
 	auto res = new SecretGame01LayerR();
@@ -396,27 +396,32 @@ CCTintTo* SecretGame01LayerR::betterTintTo(float duration, _ccColor3B color) {
 }
 
 gd::string SecretGame01LayerR::getFrameForDifficulty(int difficulty) {
+	// I hope these fix the weird fallback texture thing
+	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("player_01.plist", "player_01.png");
+	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("player_04.plist", "player_04.png");
+	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("player_12.plist", "player_12.png");
+	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("player_73.plist", "player_73.png");
 	gd::string frame = "";
 	switch (difficulty) {
 		case 0:
-			frame = "player_01_001.png";
-			break;
+		frame = "player_01_001.png";
+		break;
 		default:
-			frame = "player_04_001.png";
-			break;
+		frame = "player_04_001.png";
+		break;
 		case 4: [[fallthrough]];
 		case 5: [[fallthrough]];
 		case 6: [[fallthrough]];
 		case 7:
-			frame = "player_12_001.png";
-			break;
+		frame = "player_12_001.png";
+		break;
 		case 8: [[fallthrough]];
 		case 9: [[fallthrough]];
 		case 10: [[fallthrough]];
 		case 11: [[fallthrough]];
 		case 12:
-			frame = "player_73_001.png";
-			break;
+		frame = "player_73_001.png";
+		break;
 	}
 	if (!Mod::get()->getSettingValue<bool>("fixDifficultyFrame")) frame = "player_01_001.png";
 	return frame;

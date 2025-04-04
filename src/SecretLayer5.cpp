@@ -65,7 +65,7 @@ class $modify(MySecretLayer5, SecretLayer5) {
 	}
 
 	void onIcon(CCObject * sender) {
-#ifdef GEODE_IS_WINDOWS
+#ifdef NEEDS_DECOMP
 		auto scene = SecretLayer6R::scene();
 #else
 		auto scene = SecretLayer6::scene();

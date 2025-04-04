@@ -2,7 +2,7 @@
 #include <Geode/binding/SecretLayer5.hpp>
 using namespace geode::prelude;
 
-#ifndef GEODE_IS_WINDOWS
+#ifndef NEEDS_DECOMP
 void MySecretLayer6::onBack(CCObject* sender) {
 #else
 void SecretLayer6R::onBack(CCObject* sender) {
@@ -14,7 +14,7 @@ void SecretLayer6R::onBack(CCObject* sender) {
 	director->popSceneWithTransition(0.5f, PopTransition::kPopTransitionFade);
 }
 
-#ifdef GEODE_IS_WINDOWS
+#ifdef NEEDS_DECOMP
 CCScene* SecretLayer6R::scene() {
 	CCScene* scene = CCScene::create();
 	scene->retain();
