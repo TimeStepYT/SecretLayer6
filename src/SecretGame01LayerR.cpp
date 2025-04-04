@@ -395,13 +395,13 @@ CCTintTo* SecretGame01LayerR::betterTintTo(float duration, _ccColor3B color) {
 	return CCTintTo::create(duration, color.r, color.g, color.b);
 }
 
-gd::string SecretGame01LayerR::getFrameForDifficulty(int difficulty) {
+std::string SecretGame01LayerR::getFrameForDifficulty(int difficulty) {
 	// I hope these fix the weird fallback texture thing
 	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("player_01.plist");
 	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("player_04.plist");
 	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("player_12.plist");
 	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("player_73.plist");
-	gd::string frame = "";
+	std::string frame = "";
 	switch (difficulty) {
 		case 0:
 		frame = "player_01_001.png";
