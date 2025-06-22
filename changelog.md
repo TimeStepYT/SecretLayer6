@@ -1,3 +1,6 @@
+# 1.0.3
+* Bumped Geode version to 5.6.0 for iOS 26 to work
+
 # 1.0.2
 * iOS support!
 * My decompiled version is now used everywhere, so android players can enjoy my fix setting!
