@@ -1,5 +1,9 @@
+# 1.0.4
+* Fixed typo in the version number in 1.0.3's changelog
+* Bumped Geode version to 4.6.3 (just so there's a tiny reason to actually do this)
+
 # 1.0.3
-* Bumped Geode version to 5.6.0 for iOS 26 to work
+* Bumped Geode version to 4.6.0 for iOS 26 to work
 
 # 1.0.2
 * iOS support!

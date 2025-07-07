@@ -19,7 +19,7 @@ bool SecretGame01LayerR::init() {
 	if (!CCLayer::init()) return false;
 
 	if (Mod::get()->getSettingValue<bool>("fixDifficultyFrame")) {
-		// Thank you for you help, dank!
+		// Thank you for your help, dank!
 		GameManager::get()->loadIcon(1, (int) IconType::Cube, -1);
 		GameManager::get()->loadIcon(4, (int) IconType::Cube, -1);
 		GameManager::get()->loadIcon(12, (int) IconType::Cube, -1);
@@ -81,7 +81,7 @@ unsigned int SecretGame01LayerR::getCountForDifficulty(int difficulty) {
 	unsigned int count = 2;
 	unsigned int difficultyLess = difficulty - 1;
 
-	unsigned int countsForDifficulty[]{ 3, 4, 5, 3, 4, 5, 6, 3, 4, 5, 6, 7 };
+	unsigned int countsForDifficulty[] = { 3, 4, 5, 3, 4, 5, 6, 3, 4, 5, 6, 7 };
 
 	if (difficultyLess < 12) count = countsForDifficulty[difficultyLess];
 
