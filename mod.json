@@ -1,5 +1,5 @@
 {
-    "geode": "4.6.0",
+    "geode": "4.6.3",
     "gd": {
         "win": "2.2074",
         "android": "2.2074",
@@ -8,7 +8,7 @@
     },
     "id": "timestepyt.secretlayer6",
     "name": "SecretLayer6",
-    "version": "v1.0.3",
+    "version": "v1.0.4",
     "developer": "TimeStepYT",
     "description": "Access to the unused minigame",
     "tags": [
