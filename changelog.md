@@ -1,3 +1,6 @@
+# 1.0.5
+* Updated to 2.2081 and Geode v5.0.0
+
 # 1.0.4
 * Fixed typo in the version number in 1.0.3's changelog
 * Bumped Geode version to 4.6.3 (just so there's a tiny reason to actually do this)

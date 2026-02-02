@@ -33,13 +33,10 @@ bool SecretGame01LayerR::init() {
 	this->addChild(menu);
 	menu->setTouchEnabled(false);
 
-	auto icons = CCArray::create();
+	auto icons = std::vector<CCMenuItemSpriteExtra*>{};
 	this->m_icons = icons;
-	icons->retain();
 
-	auto correctIcons = CCArray::create();
-	this->m_correctIcons = correctIcons;
-	correctIcons->retain();
+	this->m_correctIcons = std::vector<CCMenuItemSpriteExtra*>{};
 
 	auto timeBar = CCSprite::createWithSpriteFrameName("whiteSquare20_001.png");
 	this->m_timeBar = timeBar;
@@ -90,24 +87,26 @@ unsigned int SecretGame01LayerR::getCountForDifficulty(int difficulty) {
 
 void SecretGame01LayerR::gameStep01() {
 	int countForDifficulty = this->getCountForDifficulty(this->m_difficulty);
-	auto wrongIcons = CCArray::create();
-	wrongIcons->addObjectsFromArray(this->m_icons);
-	this->m_correctIcons->removeAllObjects();
+	auto wrongIcons = this->m_icons;
+	this->m_correctIcons.clear();
+
 	if (0 < countForDifficulty) {
 		int count = 0;
 		do {
 			int random = rand();
 			count = count + 1;
-			unsigned int i = random % wrongIcons->count();
-			CCObject* randomIcon = wrongIcons->objectAtIndex(i);
-			wrongIcons->removeObjectAtIndex(i, true);
-			this->m_correctIcons->addObject(randomIcon);
+			unsigned int i = random % wrongIcons.size();
+			auto randomIcon = wrongIcons.at(i);
+			wrongIcons.erase(wrongIcons.begin() + i);
+			this->m_correctIcons.push_back(randomIcon);
 		} while (count != countForDifficulty);
 	}
+
 	float delayTime = 0.f;
-	int arraySize = this->m_correctIcons->count();
+	int arraySize = this->m_correctIcons.size();
+
 	for (size_t i = 0; i < arraySize; i = i + 1) {
-		auto object = static_cast<CCMenuItemSpriteExtra*>(this->m_correctIcons->objectAtIndex(i));
+		auto object = this->m_correctIcons.at(i);
 
 		auto normalImage = object->getNormalImage();
 		auto normalImageChildren = normalImage->getChildren();
@@ -144,10 +143,8 @@ void SecretGame01LayerR::gameStep01() {
 
 void SecretGame01LayerR::gameStep02() {
 	this->m_menu->setTouchEnabled(true);
-	if (this->m_icons) {
-		CCObject* iconObject;
-		CCARRAY_FOREACH(this->m_icons, iconObject) {
-			auto icon = static_cast<CCMenuItemSpriteExtra*>(iconObject);
+	if (!this->m_icons.empty()) {
+		for (auto icon : this->m_icons) {
 			auto normalImage = static_cast<CCMenuItemSpriteExtra*>(icon->getNormalImage());
 			auto children = normalImage->getChildren();
 			auto icon2 = static_cast<CCMenuItemSpriteExtra*>(children->objectAtIndex(0));
@@ -186,15 +183,12 @@ void SecretGame01LayerR::scaleOutGame(bool won) {
 
 	int tagOfNextIcon = -1;
 
-	if (this->m_nextIconIndex < this->m_correctIcons->count()) {
-		auto nextIcon = static_cast<CCMenuItemSpriteExtra*>(this->m_correctIcons->objectAtIndex(this->m_nextIconIndex));
+	if (this->m_nextIconIndex < this->m_correctIcons.size()) {
+		auto nextIcon = this->m_correctIcons.at(this->m_nextIconIndex);
 		tagOfNextIcon = nextIcon->getTag();
 	}
 
-	CCObject* iconObject;
-
-	CCARRAY_FOREACH(this->m_icons, iconObject) {
-		auto icon = static_cast<CCMenuItemSpriteExtra*>(iconObject);
+	for (auto icon : this->m_icons) {
 		auto normalImage = static_cast<CCMenuItemSpriteExtra*>(icon->getNormalImage());
 		auto childrenOfNormalImage = normalImage->getChildren();
 		auto firstObjectOfNormalImage = static_cast<CCMenuItemSpriteExtra*>(childrenOfNormalImage->objectAtIndex(0));
@@ -235,16 +229,11 @@ void SecretGame01LayerR::showGameOver() {
 }
 
 void SecretGame01LayerR::resetGame() {
-	auto icons = this->m_icons;
-
-	CCObject* iconObject;
-	CCARRAY_FOREACH(icons, iconObject) {
-		auto icon = static_cast<CCMenuItemSpriteExtra*>(iconObject);
-
+	for (auto icon : this->m_icons) {
 		icon->removeFromParentAndCleanup(true);
 	}
 
-	icons->removeAllObjects();
+	this->m_icons.clear();
 	int rows = SecretGame01LayerR::getRowsForDifficulty(this->m_difficulty);
 
 	auto director = CCDirector::sharedDirector();
@@ -291,7 +280,7 @@ void SecretGame01LayerR::resetGame() {
 			auto selectButton = CCMenuItemSpriteExtra::create(sprite, nullptr, this, menu_selector(SecretGame01LayerR::onSelectButton));
 			selectButton->setSizeMult(1.2f);
 			selectButton->setTag(i);
-			this->m_icons->addObject(selectButton);
+			this->m_icons.push_back(selectButton);
 			this->m_menu->addChild(selectButton);
 
 			float x = gridX * 38.f + xOffset;
@@ -339,12 +328,12 @@ void SecretGame01LayerR::onSelectButton(CCObject* sender) {
 	CCMenuItemSpriteExtra* clickedObject = nullptr;
 
 	auto tag = sender->getTag();
-	int correctIconsCount = this->m_correctIcons->count();
+	int correctIconsCount = this->m_correctIcons.size();
 	if (correctIconsCount - 1 < this->m_nextIconIndex) {
 		clickedObject = nullptr;
 		if (tag == -1) {
 			this->m_nextIconIndex++;
-			int arrayCount = this->m_correctIcons->count();
+			int arrayCount = this->m_correctIcons.size();
 			if (arrayCount <= this->m_nextIconIndex) {
 				this->showGameWon();
 				return;
@@ -354,11 +343,11 @@ void SecretGame01LayerR::onSelectButton(CCObject* sender) {
 		}
 	}
 	else {
-		clickedObject = static_cast<CCMenuItemSpriteExtra*>(this->m_correctIcons->objectAtIndex(this->m_nextIconIndex));
+		clickedObject = this->m_correctIcons.at(this->m_nextIconIndex);
 		correctIconsCount = clickedObject->getTag();
 		if (correctIconsCount == tag) {
 			this->m_nextIconIndex++;
-			int arrayCount = this->m_correctIcons->count();
+			int arrayCount = this->m_correctIcons.size();
 			if (arrayCount <= this->m_nextIconIndex) {
 				this->showGameWon();
 				return;
@@ -373,7 +362,10 @@ void SecretGame01LayerR::onSelectButton(CCObject* sender) {
 void SecretGame01LayerR::didSelectCorrectObject(CCMenuItemSpriteExtra* object) {
 	if (!object) return;
 
-	this->m_icons->removeObject(object, true);
+	auto it = std::find(this->m_icons.begin(), this->m_icons.end(), object);
+	int removeIndex = it - this->m_icons.begin();
+	this->m_icons.erase(this->m_icons.begin() + removeIndex);
+	
 	object->setEnabled(false);
 	auto disabledImage = object->getNormalImage();
 	auto children = disabledImage->getChildren();
