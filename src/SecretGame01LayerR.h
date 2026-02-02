@@ -26,8 +26,8 @@ public:
 	unsigned int m_difficulty;
 	cocos2d::CCMenu* m_menu;
 	int m_nextIconIndex;
-	cocos2d::CCArray* m_icons;
-	cocos2d::CCArray* m_correctIcons;
+	std::vector<CCMenuItemSpriteExtra*> m_icons;
+	std::vector<CCMenuItemSpriteExtra*> m_correctIcons;
 	cocos2d::CCSprite* m_timeBar;
 	bool m_timerRunning;
 	float m_timePassed;
