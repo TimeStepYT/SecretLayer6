@@ -48,8 +48,6 @@ jobs:
           combine: true
           export-pdb: true
           target: ${{ matrix.config.target }}
-          sdk: nightly
-          cli: nightly
 
   package:
     name: Package builds
