@@ -59,9 +59,9 @@ class $modify(MySecretLayer5, SecretLayer5) {
         auto dialogLayer = DialogLayer::createWithObjects(objects, 4);
         dialogLayer->setID("mastermind-dialog"_spr);
         dialogLayer->m_delegate = this->m_fields.self();
-        this->addChild(dialogLayer, 100);
         dialogLayer->updateChatPlacement(DialogChatPlacement::Center);
         dialogLayer->animateInRandomSide();
+        dialogLayer->addToMainScene();
     }
 
     void onIcon(CCObject* sender) {
