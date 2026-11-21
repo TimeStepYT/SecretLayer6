@@ -1,3 +1,6 @@
+# 1.0.6
+* Updated to 2.2091
+
 # 1.0.5
 * Updated to 2.2081 and Geode v5.0.0
 
